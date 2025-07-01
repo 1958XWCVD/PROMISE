@@ -311,7 +311,7 @@ modeling = function(dt, backward=TRUE, dig=3)
 {
 	var.names = c("age", "BMI", "hypertension", "LDLC", "diabetes", "smoke", "zeren", "xiazhai", 
 			"gaozhi", "SP", "TIA", "TCHO", 
-			"DP", "gender", "enroll_event", "CIS", "AMI", "FBG", "HDLC")
+			"DP", "gender", "enroll_event", "CIS", "AMI", "FBG", "HDLC", "AM", "Hypoglycemic", "Hypolipidemic")
 	# univariate regression
 	single.res = NULL
 	for( var in var.names )
@@ -323,7 +323,7 @@ modeling = function(dt, backward=TRUE, dig=3)
 
 	# multiple regression
 	var.names = c("age", "BMI", "hypertension", "LDLC", "diabetes", "smoke", "zeren", "xiazhai", 
-			"gaozhi", "SP", "TIA", "TCHO")
+			"gaozhi", "SP", "TIA", "AM")
 	formula = as.formula(paste("Surv(time, event)~", paste(var.names, collapse="+")))
 	cox = coxph(formula, data=dt)
 	multi.res = cox_out(cox, dig)
